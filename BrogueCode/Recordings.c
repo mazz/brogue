@@ -1039,16 +1039,29 @@ void saveGame() {
 	deleteMessages();
 }
 
-void saveRecording() {
+#include <time.h>
+
+void saveRecording(boolean victory, char* killedBy, short depthLevel) {
 	char filePath[BROGUE_FILENAME_MAX], defaultPath[BROGUE_FILENAME_MAX];
-	boolean askAgain;
-	
-	if (rogue.playbackMode) {
-		return;
-	}
-	
-	getAvailableFilePath(defaultPath, "Recording", RECORDING_SUFFIX);
-	
+    char dateBuf[128];
+    boolean askAgain;
+
+    if (rogue.playbackMode) {
+        return;
+    }
+
+    time_t t = time(NULL);
+    struct tm tm = *localtime(&t);
+
+    sprintf(dateBuf, "%d-%d-%d %d%d%d", tm.tm_year + 1900, tm.tm_mon + 1, tm.tm_mday, tm.tm_hour, tm.tm_min, tm.tm_sec);
+
+    if (victory) {
+        sprintf(defaultPath, "%s VICTORY", dateBuf);
+    } else {
+        sprintf(defaultPath, "%s %s at depth %i", dateBuf, killedBy, depthLevel);
+    }
+
+//    strcat(defaultPath, filenameBuf);
 	deleteMessages();
 	do {
 		askAgain = false;

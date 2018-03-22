@@ -1174,7 +1174,8 @@ void gameOver(char *killedBy, boolean useCustomPhrasing) {
 			printHighScores(true);
 		}
 		blackOutScreen();
-		saveRecording();
+//        saveRecording(killedBy, rogue.depthLevel);
+        saveRecording(false, killedBy, rogue.depthLevel);
 	}
 	
 	rogue.gameHasEnded = true;
@@ -1284,7 +1285,7 @@ void victory(boolean superVictory) {
 	displayMoreSign();
 	rogue.playbackMode = isPlayback;
 	
-	saveRecording();
+	saveRecording(true, NULL, rogue.depthLevel);
 	
 	printHighScores(qualified);
 	

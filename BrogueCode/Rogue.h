@@ -3123,7 +3123,7 @@ extern "C" {
 	void getAvailableFilePath(char *filePath, const char *defaultPath, const char *suffix);
     boolean characterForbiddenInFilename(const char theChar);
 	void saveGame();
-	void saveRecording();
+    void saveRecording(boolean victory, char* killedBy, short depthLevel);
 	void parseFile();
 	void RNGLog(char *message);
 	

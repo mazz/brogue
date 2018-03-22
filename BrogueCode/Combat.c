@@ -1545,7 +1545,8 @@ boolean inflictDamage(creature *attacker, creature *defender,
 	}
 	
 	refreshSideBar(-1, -1, false);
-	return killed;
+    return killed;
+//    return true;
 }
 
 void addPoison(creature *monst, short durationIncrement, short concentrationIncrement) {
